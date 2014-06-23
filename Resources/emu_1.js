@@ -75,5 +75,30 @@ button.addEventListener('click', function(e) {
 	Titanium.Platform.openURL('https://f-droid.org/repo/org.scummvm.scummvm_6.apk');
 });
 
+var buttonShare = Ti.UI.createButton({
+	color : 'blue',
+	title : 'Share This Application',
+	height : 'auto',
+	width : 'auto',
+	font : {
+		fontSize : '24dp'
+	},
+	top : 200,
+	left : 70,
+});
+
+buttonShare.addEventListener('click', function(e) {
+	var intent = Ti.Android.createIntent({
+		action : Ti.Android.ACTION_SEND,
+		type : "text/plain"
+	});
+
+	intent.putExtra(Ti.Android.EXTRA_TEXT, "Check this cool Application : Scummvm : https://f-droid.org/repo/org.scummvm.scummvm_6.apk");
+	intent.addCategory(Ti.Android.CATEGORY_DEFAULT);
+	Ti.Android.currentActivity.startActivity(intent);
+});
+
+
 Ti.UI.currentWindow.add(tableView);
 Ti.UI.currentWindow.add(button);
+Ti.UI.currentWindow.add(buttonShare);
